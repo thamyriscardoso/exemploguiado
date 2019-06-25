@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Salvar{% endblock %}
+{% block content %}  
+<div class="container">
+  <form action="/conta/salvar" method="POST">
+    {% if conta %}
+  <h1>Alterando conta</h1> 
+  <div class="input-group">
+      <label class="col-form-label">Numero da conta</label>
+      <input type="number" class="form-control" name="numero" value={{conta.numero}} id="numero">
+  </div>
+  <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">Agência</span>
+        <input type="number" class="form-control" value="{{conta.agencia}}" name="agencia" id="agencia" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">Tipo: </span>
+        <select name="tipo" id="tipo">
+          <option value="Poupança">Poupança</option>
+          <option value="Conta Corrente">Conta Corrente</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">Saldo:</span>
+        <input type="number" class="form-control" value="{{conta.saldo}}" name="saldo" id="saldo" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">Cliente: </span>
+        <select name="cliente" id="clientes">
+          {% for c in clientes %}
+          <option value="{{c.codigo}}">{{c.nome}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <input type="submit" value="Enviar">
+    {%else%}
+    <h1>Inserindo conta</h1>
+    <div class="input-group">
+      <label class="col-form-label">Numero da conta</label>
+      <input type="number" class="form-control" name="numero" placeholder="ex: 045.368.580-10" id="numero">
+  </div>
+  <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">Agência</span>
+        <input type="number" class="form-control" placeholder="ex: 0668" name="agencia" id="agencia" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">Tipo: </span>
+        <select name="tipo" id="tipo">
+          <option value="Poupança">Poupança</option>
+          <option value="Conta Corrente">Conta Corrente</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">Saldo:</span>
+        <input type="number" class="form-control" placeholder="ex: 1000" name="saldo" id="saldo" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">Cliente: </span>
+        <select name="cliente" id="clientes">
+          {% for c in clientes %}
+          <option value="{{c.codigo}}">{{c.nome}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <input type="submit" value="Enviar">
+      {% endif %}
+    </form>
+  </div>
+    {% endblock %}

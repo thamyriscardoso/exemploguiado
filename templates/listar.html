@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Listar Contas{% endblock %}
+{% block content %}  
+<h1>Listando</h1>
+<table class="table">
+	<thead class="thead-dark">
+		<tr>
+			<th> Codigo</th>
+			<th> Numero da Conta</th>
+			<th> Agencia</th>
+			<th> Saldo</th>
+			<th> Tipo </th>
+			<th></th>		
+		</tr>
+	</thead>
+	<tbody>
+		{%for c in contas%}
+			<tr> 
+				<td>{{c.codigo}}</td>
+				<td>{{c.numero}}</td>
+				<td>{{c.agencia}}</td>
+				<td>{{c.saldo}}</td>
+				<td>{{c.tipo}}</td>
+                <td>
+					<a href="/conta/buscar?codigo={{c.codigo}}"><button class="btn btn-dark" name="detalhes" type="submit" value= "{{c.codigo}}">Ver detalhes</button></a>
+				</td>
+			<tr>
+		{%endfor%}		
+	</tbody>
+</table>
+<a href="{{url_for('formsConta')}}" class="btn btn-dark">Inserir uma nova conta</a>
+
+{% endblock %}
+

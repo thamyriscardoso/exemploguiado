@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Buscando Conta{% endblock %}
+<style>
+*{
+    text-align: center;
+}
+</style>
+
+{% block content %}  
+
+<table class="table">
+	<thead class="thead-dark">
+		<tr>
+			<th> Codigo</th>
+			<th> Numero da Conta</th>
+			<th> Agencia</th>
+			<th> Saldo</th>
+			<th> Tipo </th>
+			<th>Nome do Cliente</th>
+			<th>Codigo do Cliente</th>
+			<th>CPF</th>
+			<th></th>		
+		</tr>
+	</thead>
+	<tbody>
+			<tr> 
+				<td>{{buscando.codigo}}</td>
+				<td>{{buscando.numero}}</td>
+				<td>{{buscando.agencia}}</td>
+				<td>{{buscando.saldo}}</td>
+				<td>{{buscando.tipo}}</td>
+				<td>{{buscando.cliente.nome}}</td>
+				<td>{{buscando.cliente.codigo}}</td>
+				<td>{{buscando.cliente.cpf}}</td>
+			<td>
+				<a href="{{url_for('listaConta')}}"><button class="btn btn-dark" name="detalhes" type="submit">Voltar</button></a>
+					<a href="/conta/excluir?cod={{buscando.codigo}}"><button  class="btn btn-dark" name="excluir" type="submit" value= "{{buscando.codigo}}">Excluir</button></a>
+					<a href="/conta/alterar?cod={{buscando.codigo}}"><button class="btn btn-dark" name="alterar" type="submit" value= "{{buscando.codigo}}" >Alterar</button></a>
+			</td>
+		</tr>	
+	</tbody>
+</table>
+{% endblock %}
